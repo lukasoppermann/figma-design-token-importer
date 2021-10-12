@@ -1,3 +1,4 @@
+import { closePlugin } from './modules/closePlugin'
 import { importFile } from './modules/importFile'
 
 // initiate UI
@@ -23,12 +24,6 @@ figma.ui.onmessage = async (message) => { // PluginMessage
    * close plugin and show notification if available
    */
   if (command === 'closePlugin') {
-    // show notification if send
-    if (payload?.notification !== undefined && payload?.notification !== '') {
-      figma.notify(payload.notification)
-    }
-    // close plugin
-    figma.ui.hide()
-    figma.closePlugin()
+    closePlugin(payload)
   }
 }
